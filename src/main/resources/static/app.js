@@ -10,10 +10,9 @@ ws.onmessage = function (event) {
     log.innerHTML += message + "\n";
 }
 
-function send(element) {
-    let content = element.value;
+function send(msg) {
     let json = JSON.stringify({
-        "message": content
+        "message": msg
     });
     ws.send(json);
 }
@@ -21,7 +20,8 @@ function send(element) {
 document.getElementById("form").addEventListener("submit", function () {
     event.preventDefault();
     if (document.getElementById("send").value != "") {
-        send(document.getElementById("send"));
-        document.getElementById("send").value = "";
+        let msg = document.getElementById("send").value // Save the message in another variable
+        send(msg); // Send the message to the send function
+        document.getElementById("send").value = ""; // now we can clear the input field without being scared of the send function not having the message when it is needed.
     }
 })
