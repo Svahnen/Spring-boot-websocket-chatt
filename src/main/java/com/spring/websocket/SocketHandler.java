@@ -1,11 +1,13 @@
 package com.spring.websocket;
 
 import java.io.IOException;
+import java.io.Reader;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;
@@ -30,7 +32,7 @@ public class SocketHandler extends TextWebSocketHandler {
         Map value = new Gson().fromJson(message.getPayload(), Map.class);
 
         for (WebSocketSession webSocketSession : sessions) {
-            webSocketSession.sendMessage(new TextMessage("Hello " + value.get("name") + " !"));
+            webSocketSession.sendMessage(new TextMessage(value.get("message").toString()));
         }
     }
 
