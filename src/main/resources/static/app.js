@@ -1,6 +1,6 @@
 
 let ws;
-ws = new WebSocket('ws://localhost:8080/name');
+ws = new WebSocket('ws://localhost:8080/chat');
 // ws.onmessage = function(data){
 //    showGreeting(data.data);
 
